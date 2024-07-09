@@ -1,3 +1,4 @@
+import pytest 
 import uuid
 from datetime import datetime, timedelta
 
@@ -5,7 +6,9 @@ from .trips_repository import TripsRepository
 from src.models.settings.db_connection_handler import db_connection_handler
 
 db_connection_handler.connect() 
+trip_id = '2dea828f-c1ae-4286-b99f-5d637d414cf7'
 
+@pytest.mark.skip(reason='database interaction')
 def test_create_trip():
   conn = db_connection_handler.get_connection()
   trips_repository = TripsRepository(conn)
@@ -20,4 +23,22 @@ def test_create_trip():
   }
 
   trips_repository.create_trip(trips_infos)
+
+@pytest.mark.skip(reason='database interaction')
+def test_find_by_id():
+  conn = db_connection_handler.get_connection()
+  trips_repository = TripsRepository(conn)
+
+  trip = trips_repository.find_trip_by_id(trip_id)
+  print(trip)
+
+@pytest.mark.skip(reason='database interaction')
+def test_update_trip_stats():
+  conn = db_connection_handler.get_connection()
+  trips_repository = TripsRepository(conn)
+
+  trip = trips_repository.update_trip_status(trip_id)
+  print(trip)
+
+
 
