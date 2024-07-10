@@ -15,7 +15,7 @@ def test_create_trip():
 
   trips_infos = {
     'id': str(uuid.uuid4()),
-    'destionation': 'Osasco',
+    'destination': 'Osasco',
     'start_date': datetime.strptime('02-01-2024', '%d-%m-%Y'),
     'end_date': datetime.strptime('02-01-2024', '%d-%m-%Y') + timedelta(days=5),
     'owner_name': 'John Doe',

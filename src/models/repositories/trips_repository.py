@@ -15,7 +15,7 @@ class TripsRepository:
           (?, ?, ?, ?, ?, ?)
       ''', (
         trips_infos['id'],
-        trips_infos['destionation'],
+        trips_infos['destination'],
         trips_infos['start_date'],
         trips_infos['end_date'],
         trips_infos['owner_name'],
