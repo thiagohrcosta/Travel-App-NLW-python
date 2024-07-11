@@ -3,6 +3,7 @@ from flask import jsonify, Blueprint, request
 trips_routes_bp = Blueprint('trip_routes', __name__)
 
 from src.controllers.trip_creator import TripCretor
+from src.controllers.trip_finder import TripFinder
 
 from src.models.repositories.trips_repository import TripsRepository
 from src.models.repositories.emails_to_invite_repository import EmailsToInviteRepository
@@ -19,3 +20,14 @@ def create_trip():
   response = controller.create(request.json)
 
   return jsonify(response['body']), response['status_code']
+
+@trips_routes_bp.route('/trips/<trip_id>', methods=['GET'])
+def find_trip(trip_id):
+  conn = db_connection_handler.get_connection()
+  trips_repository = TripsRepository(conn)
+  controller = TripFinder(trips_repository)
+
+  response = controller.find_trip_details(trip_id)
+
+  return jsonify(response['body']), response['status_code']
+
