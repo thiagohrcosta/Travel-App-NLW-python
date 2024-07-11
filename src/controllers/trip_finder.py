@@ -5,6 +5,7 @@ class TripFinder:
     self.__trips_repository = trips_repository
 
   def find_trip_details(self, trip_id) -> Dict:
+    print(trip_id)
     try:
       trip = self.__trips_repository.find_trip_by_id(trip_id)
 
